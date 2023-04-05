@@ -1,6 +1,7 @@
 import fetchCountries from './fetchCountries';
 import Notiflix from 'notiflix';
-import debounce from 'lodash.debounce';
+// import debounce from 'lodash.debounce';
+import { debounce } from 'lodash';
 import './css/styles.css';
 
 const DEBOUNCE_DELAY = 300;
@@ -14,11 +15,11 @@ const ref = {
 ref.input.addEventListener('input', debounce(onInputSearch, DEBOUNCE_DELAY));
 
 function onInputSearch(evt) {
-  const inputValue = evt.target.value.trim();
-  // console.log(inputValue);
-  if (inputValue === '') {
-    return;
-  }
+const inputValue = evt.target.value.trim();
+// console.log(inputValue);
+if (inputValue === '') {
+return;
+}
 
   fetchCountries(inputValue)
     .then(countries => {
@@ -27,18 +28,18 @@ function onInputSearch(evt) {
           `Too many matches found. Please enter a more specific name.`
         );
         clearMarkup();
-        // refs.ul.innerHTML = '';
-        // refs.div.innerHTML = '';
+        // ref.ul.innerHTML = '';
+        // ref.div.innerHTML = '';
       } else if (countries.length <= 10 && countries.length >= 2) {
         // console.log(countries);
         addMurkupList(countries, createCountriesListMarkup);
-        // refs.div.innerHTML = '';
-        // refs.ul.innerHTML = createCountriesListMarkup(countries);
+        // ref.div.innerHTML = '';
+        // ref.ul.innerHTML = createCountriesListMarkup(countries);
       } else if (countries.length === 1) {
         // console.log(countries);
         addMurkupInfo(countries, createCountryInfoMarkup);
-        // refs.ul.innerHTML = '';
-        // refs.div.innerHTML = createCountryInfoMarkup(countries);
+        // ref.ul.innerHTML = '';
+        // ref.div.innerHTML = createCountryInfoMarkup(countries);
       } else if (countries.length < 1) {
         return;
       }
@@ -78,13 +79,6 @@ function createCountriesListMarkup(countries) {
 function createCountryInfoMarkup(countries) {
   return countries
     .map(({ name, flags, capital, population, languages }) => {
-      // const name = country.name.official;
-      // const flag = country.flags.svg;
-      //   const language = Object.values(languages);
-      // console.log(capital);
-      // console.log(name.official);
-      // console.log(population);
-      // console.log(languages);
       return `
       <div class=country-info__title>
         <img src = ${flags.svg} width = 50>
