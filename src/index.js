@@ -32,12 +32,12 @@ return;
         // ref.div.innerHTML = '';
       } else if (countries.length <= 10 && countries.length >= 2) {
         // console.log(countries);
-        addMurkupList(countries, createCountriesListMarkup);
+        addMarkupList(countries, createCountriesListMarkup);
         // ref.div.innerHTML = '';
         // ref.ul.innerHTML = createCountriesListMarkup(countries);
       } else if (countries.length === 1) {
         // console.log(countries);
-        addMurkupInfo(countries, createCountryInfoMarkup);
+        addMarkupInfo(countries, createCountryInfoMarkup);
         // ref.ul.innerHTML = '';
         // ref.div.innerHTML = createCountryInfoMarkup(countries);
       } else if (countries.length < 1) {
@@ -51,15 +51,27 @@ function clearMarkup() {
   ref.ul.innerHTML = '';
   ref.div.innerHTML = '';
 }
-function addMurkupList(countries, callback) {
-  callback(countries);
+// function addMurkupList(countries, callback) {
+//   callback(countries);
+//   ref.div.innerHTML = '';
+//   ref.ul.innerHTML = createCountriesListMarkup(countries);
+// }
+// function addMurkupInfo(countries, callback) {
+//   callback(countries);
+//   ref.ul.innerHTML = '';
+//   ref.div.innerHTML = createCountryInfoMarkup(countries);
+function addMarkupList(countries, callback) {
+  const markup = callback(countries);
+  ref.ul.innerHTML = markup;
   ref.div.innerHTML = '';
-  ref.ul.innerHTML = createCountriesListMarkup(countries);
 }
-function addMurkupInfo(countries, callback) {
-  callback(countries);
+
+function addMarkupInfo(countries, callback) {
+  const markup = callback(countries);
   ref.ul.innerHTML = '';
-  ref.div.innerHTML = createCountryInfoMarkup(countries);
+  ref.div.innerHTML = markup;
+
+
 }
 function createCountriesListMarkup(countries) {
   return countries
