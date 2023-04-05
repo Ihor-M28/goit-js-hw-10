@@ -5,13 +5,13 @@ import './css/styles.css';
 
 const DEBOUNCE_DELAY = 300;
 
-const refs = {
+const ref = {
   input: document.querySelector('#search-box'),
   ul: document.querySelector('.country-list'),
   div: document.querySelector('.country-info'),
 };
 
-refs.input.addEventListener('input', debounce(onInputSearch, DEBOUNCE_DELAY));
+ref.input.addEventListener('input', debounce(onInputSearch, DEBOUNCE_DELAY));
 
 function onInputSearch(evt) {
   const inputValue = evt.target.value.trim();
@@ -47,18 +47,18 @@ function onInputSearch(evt) {
 }
 
 function clearMarkup() {
-  refs.ul.innerHTML = '';
-  refs.div.innerHTML = '';
+  ref.ul.innerHTML = '';
+  ref.div.innerHTML = '';
 }
 function addMurkupList(countries, callback) {
   callback(countries);
-  refs.div.innerHTML = '';
-  refs.ul.innerHTML = createCountriesListMarkup(countries);
+  ref.div.innerHTML = '';
+  ref.ul.innerHTML = createCountriesListMarkup(countries);
 }
 function addMurkupInfo(countries, callback) {
   callback(countries);
-  refs.ul.innerHTML = '';
-  refs.div.innerHTML = createCountryInfoMarkup(countries);
+  ref.ul.innerHTML = '';
+  ref.div.innerHTML = createCountryInfoMarkup(countries);
 }
 function createCountriesListMarkup(countries) {
   return countries
