@@ -108,7 +108,7 @@ const ref = {
 
 ref.input.addEventListener('input', debounce(onInputSearch, DEBOUNCE_DELAY));
 
-const errorSearch = document.querySelector('.error-search');
+// const errorSearch = document.querySelector('.error-search');
 
 function onInputSearch(evt) {
   const inputValue = evt.target.value.trim();
@@ -132,7 +132,12 @@ function onInputSearch(evt) {
         return;
       }
     })
-    .catch(error => { console.log(error) });
+    // .catch(error => { console.log(error) });
+  .catch(errorSearch);
+}
+function errorSearch(error) {
+  clearMarkup();
+  Notiflix.Notify.failure(`Oops, there is no country with that name`);
 }
 
 function clearMarkup() {
@@ -158,7 +163,7 @@ function createCountriesListMarkup(countries) {
       return `
        <li class="country-item">
         <img class="flag" src=${flags.svg} width=50>
-         <p class=country-name>${name}</p>
+         <p class=country-name>${name.common}</p>
        </li>`;
     })
     .join('');
@@ -170,14 +175,22 @@ function createCountryInfoMarkup(countries) {
       return `
       <div class=country-info__title>
         <img src = ${flags.svg} width = 50>
-         <p class=country-info__name>${name}</p>
+         <p class=country-info__name>${name.common}</p>
       </div>
       <p class=country-info__descr><b class=country-info__caption>Capital:</b>${capital}</p>
       <p class=country-info__descr><b class=country-info__caption>Population:</b>${population}</p>
-      <p class=country-info__descr><b class=country-info__caption>Languages:</b>${Object.values(languages).map(lang => lang.name).join(', ')}</p>
+      <p class=country-info__descr><b class=country-info__caption>Languages:</b>${Object.values(languages)}</p>
       `;
     })
     .join('');
 }
+
+
+
+// {/* <p class=country-info__descr><b class=country-info__caption>Languages:</b>${Object.values(languages).map(lang => lang.name).join(', ')}</p>
+//       `;
+//     })
+//     .join('');
+// } */}
 
 
