@@ -157,8 +157,8 @@ function createCountriesListMarkup(countries) {
     .map(({ name, flags }) => {
       return `
        <li class="country-item">
-        <img class="flag" src = ${flags.svg} width = 50 >
-        <p class=country-name>${name.common}</p>
+        <img class="flag" src=${flags.svg} width=50>
+         <p class=country-name>${name}</p>
        </li>`;
     })
     .join('');
@@ -170,7 +170,7 @@ function createCountryInfoMarkup(countries) {
       return `
       <div class=country-info__title>
         <img src = ${flags.svg} width = 50>
-        <p class=country-info__name>${name.common}</p>
+         <p class=country-info__name>${name}</p>
       </div>
       <p class=country-info__descr><b class=country-info__caption>Capital:</b>${capital}</p>
       <p class=country-info__descr><b class=country-info__caption>Population:</b>${population}</p>
